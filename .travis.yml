@@ -43,6 +43,7 @@ before_deploy:
 
 deploy:
   provider: releases
+  token: $GITHUB_TOKEN
   file_glob: true
   overwrite: true
   skip_cleanup: true
