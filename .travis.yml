@@ -48,8 +48,6 @@ deploy:
   overwrite: true
   skip_cleanup: true
   draft: true
-  edge:
-    branch: v2.0.3-beta.4
-  group: previous
+  edge: true
   on:
     branch: main
