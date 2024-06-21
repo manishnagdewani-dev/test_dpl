@@ -1,0 +1,59 @@
+if: tag IS blank
+os: linux
+language: python
+dist: focal
+# Force rebuild
+
+env:
+  global:
+    - BUILD_PYTHON_VERSION=3.12.4
+    - MIN_PYTHON_VERSION=3.12.4
+    - LINUX_BUILD_OPENSSL_VERSION=3.3.1
+    - LINUX_MIN_OPENSSL_VERSION=3.3.1
+    - MACOS_BUILD_PYTHON_VERSION=3.10.8
+    - MACOS_MIN_PYTHON_VERSION=3.10.8
+    - MACOS_BUILD_OPENSSL_VERSION=1.1.1w
+    - MACOS_MIN_OPENSSL_VERSION=1.1.1n
+    - MIN_OPENSSL_VERSION=$LINUX_MIN_OPENSSL_VERSION
+    - PATCHELF_VERSION=0.12
+# PYINSTALLER_VERSION can be full commit hash or version like v4.10
+    - PYINSTALLER_VERSION=v6.6.0
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+    - $HOME/python
+    - $HOME/ssl
+
+jobs:
+  fast_finish: true
+  include:
+#    - os: linux
+#      name: "Linux 64-bit Jammy"
+#      dist: jammy
+#      language: shell
+#      env:
+#        - DIST_UPGRADE=true
+    - os: linux
+      name: "Linux 64-bit Focal"
+      dist: focal
+      language: shell
+      env:
+        - DIST_UPGRADE=true
+
+script: true
+
+before_deploy:
+- export TRAVIS_TAG="preview"
+- unset LD_LIBRARY_PATH
+
+deploy:
+  provider: releases
+  file_glob: true
+  overwrite: true
+  skip_cleanup: true
+  draft: true
+  dpl_version: 2.0.3.beta.4
+  edge: true
+  on:
+    repo: taers232c/GAMADV-XTD3
