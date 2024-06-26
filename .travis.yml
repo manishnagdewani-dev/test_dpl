@@ -32,5 +32,3 @@ addons:
     'on':
       repo: manishnagdewani-dev/test_dpl
       branch: main
-      condition:
-      - "$VMTYPE = build"
