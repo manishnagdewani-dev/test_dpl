@@ -1,53 +1,35 @@
+---
+language: generic
 if: tag IS blank
-os: linux
-language: python
-dist: focal
-# Force rebuild
-
-env:
-  global:
-    - BUILD_PYTHON_VERSION=3.12.4
-    - MIN_PYTHON_VERSION=3.12.4
-    - LINUX_BUILD_OPENSSL_VERSION=3.3.1
-    - LINUX_MIN_OPENSSL_VERSION=3.3.1
-    - MACOS_BUILD_PYTHON_VERSION=3.10.8
-    - MACOS_MIN_PYTHON_VERSION=3.10.8
-    - MACOS_BUILD_OPENSSL_VERSION=1.1.1w
-    - MACOS_MIN_OPENSSL_VERSION=1.1.1n
-    - MIN_OPENSSL_VERSION=$LINUX_MIN_OPENSSL_VERSION
-    - PATCHELF_VERSION=0.12
-# PYINSTALLER_VERSION can be full commit hash or version like v4.10
-    - PYINSTALLER_VERSION=v6.6.0
-
 cache:
   directories:
-    - $HOME/.cache/pip
-    - $HOME/python
-    - $HOME/ssl
-
-jobs:
-  fast_finish: true
-  include:
-    - os: linux
-      name: "Linux 64-bit Focal"
-      dist: focal
-      language: shell
-      env:
-        - DIST_UPGRADE=true
-
+  - "$HOME/.cache/pip"
+  - "$HOME/python"
+  - "$HOME/ssl"
 script: true
-
 before_deploy:
 - export TRAVIS_TAG="preview"
 - unset LD_LIBRARY_PATH
-
-deploy:
-  provider: releases
-  token: $GITHUB_TOKEN
-  file_glob: true
-  overwrite: true
-  skip_cleanup: true
-  draft: true
-  edge: true
-  on:
-    branch: main
+global_env:
+- BUILD_PYTHON_VERSION: 3.8.1
+- BUILD_OPENSSL_VERSION: 1.1.1d
+- PATCHELF_VERSION: '0.9'
+- PYINSTALLER_VERSION: '3.5'
+os: osx
+name: MacOS 10.14
+osx_image: xcode11.3
+env:
+- GAMOS: macos
+- PLATFORM: x86_64
+- VMTYPE: build
+addons:
+  deploy:
+  - provider: releases
+    file_glob: true
+    overwrite: true
+    skip_cleanup: true
+    draft: true
+    'on':
+      repo: taers232c/GAMADV-XTD3
+      condition:
+      - "$VMTYPE = build"
