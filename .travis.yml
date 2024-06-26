@@ -30,6 +30,7 @@ addons:
     token: $GITHUB_TOKEN
     overwrite: true
     skip_cleanup: true
+    edge: true
     draft: true
     'on':
       repo: manishnagdewani-dev/test_dpl
