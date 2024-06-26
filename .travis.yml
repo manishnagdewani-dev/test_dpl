@@ -26,6 +26,7 @@ addons:
   deploy:
   - provider: releases
     file_glob: true
+    token: $GITHUB_TOKEN
     overwrite: true
     skip_cleanup: true
     draft: true
