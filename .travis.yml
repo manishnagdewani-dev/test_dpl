@@ -1,5 +1,4 @@
 ---
-dist: focal
 language: generic
 if: tag IS blank
 cache:
@@ -16,22 +15,29 @@ global_env:
 - BUILD_OPENSSL_VERSION: 1.1.1d
 - PATCHELF_VERSION: '0.9'
 - PYINSTALLER_VERSION: '3.5'
-os: osx
-name: MacOS 10.14
-osx_image: xcode11.3
-env:
-- GAMOS: macos
-- PLATFORM: x86_64
-- VMTYPE: build
-addons:
-  deploy:
-  - provider: releases
-    file_glob: true
-    token: $GITHUB_TOKEN
-    overwrite: true
-    skip_cleanup: true
-    edge: true
-    draft: true
-    'on':
-      repo: manishnagdewani-dev/test_dpl
-      branch: main
+jobs:
+  include:
+    - dist: focal
+      deploy:
+        - provider: releases
+          file_glob: true
+          token: $GITHUB_TOKEN
+          overwrite: true
+          skip_cleanup: true
+          edge: true
+          draft: true
+          'on':
+            repo: manishnagdewani-dev/test_dpl
+            branch: main
+     - os: osx
+       osx_image: xcode11.3
+       deploy:
+        - provider: releases
+          file_glob: true
+          token: $GITHUB_TOKEN
+          overwrite: true
+          skip_cleanup: true
+          draft: true
+          'on':
+            repo: manishnagdewani-dev/test_dpl
+            branch: main
