@@ -30,6 +30,6 @@ addons:
     skip_cleanup: true
     draft: true
     'on':
-      repo: taers232c/GAMADV-XTD3
+      repo: manishnagdewani-dev/test_dpl
       condition:
       - "$VMTYPE = build"
