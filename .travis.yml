@@ -7,8 +7,7 @@ script: true
 deploy:
   - provider: releases
     file_glob: true
-    edge:
-      branch: v2.0.3-beta.4
+    edge: true
     token: $GITHUB_TOKEN
     overwrite: true
     skip_cleanup: true
