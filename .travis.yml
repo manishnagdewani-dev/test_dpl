@@ -1,43 +1,16 @@
----
-language: generic
-if: tag IS blank
-cache:
-  directories:
-  - "$HOME/.cache/pip"
-  - "$HOME/python"
-  - "$HOME/ssl"
+language: php
+services:
+- docker
+php:
+- '7.2'
 script: true
-before_deploy:
-- export TRAVIS_TAG="preview"
-- unset LD_LIBRARY_PATH
-global_env:
-- BUILD_PYTHON_VERSION: 3.8.1
-- BUILD_OPENSSL_VERSION: 1.1.1d
-- PATCHELF_VERSION: '0.9'
-- PYINSTALLER_VERSION: '3.5'
-jobs:
-  include:
-    - dist: focal
-      deploy:
-        - provider: releases
-          file_glob: true
-          token: $GITHUB_TOKEN
-          overwrite: true
-          skip_cleanup: true
-          edge: true
-          draft: true
-          'on':
-            repo: manishnagdewani-dev/test_dpl
-            branch: main
-    - os: osx
-      osx_image: xcode11.3
-      deploy:
-        - provider: releases
-          file_glob: true
-          token: $GITHUB_TOKEN
-          overwrite: true
-          skip_cleanup: true
-          draft: true
-          'on':
-            repo: manishnagdewani-dev/test_dpl
-            branch: main
+deploy:
+  - provider: releases
+    file_glob: true
+    token: $GITHUB_TOKEN
+    overwrite: true
+    skip_cleanup: true
+    draft: true
+    'on':
+      repo: manishnagdewani-dev/test_dpl
+      branch: main
