@@ -1,8 +1,18 @@
-language: php
+os: linux
+node_js: 17.9.1
+language: node_js
+dist: jammy
 services:
-- docker
-php:
-- '7.2'
+- postgresql
+before_script:
+- rvm use 3.1.2
+before_install:
+- rvm use 3.1.2
+before_deploy:
+- rvm 3.1.2 --fuzzy do ruby -S gem install faraday -v 2.7.11
+- rvm 3.1.2 --fuzzy do ruby -S gem install faraday-net_http -v 3.0.2
+script:
+- echo "skipping tests"
 script: true
 deploy:
   - provider: releases
