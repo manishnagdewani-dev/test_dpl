@@ -1,17 +1,17 @@
 os: linux
-node_js: 17.9.1
 language: node_js
 dist: jammy
 services:
 - postgresql
+node_js:
+- 17.9.1
 before_script:
-- rvm use 3.1.2
+  - rvm use 3.1.2
 before_install:
-- rvm use 3.1.2
+  - rvm use 3.1.2
 before_deploy:
-- rvm 3.1.2 --fuzzy do ruby -S gem install faraday -v 2.7.11
-- rvm 3.1.2 --fuzzy do ruby -S gem install faraday-net_http -v 3.0.2
-script:
+  - rvm 3.1.2 --fuzzy do ruby -S gem install faraday -v 2.7.11
+  - rvm 3.1.2 --fuzzy do ruby -S gem install faraday-net_http -v 3.0.2
 - echo "skipping tests"
 script: true
 deploy:
