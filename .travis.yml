@@ -18,7 +18,7 @@ script: true
 deploy:
   - provider: releases
     file_glob: true
-    edge: true
+    group: previous
     token: $GITHUB_TOKEN
     overwrite: true
     skip_cleanup: true
