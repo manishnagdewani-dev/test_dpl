@@ -20,7 +20,6 @@ deploy:
     file_glob: true
     edge:
       branch: v2.0.3-beta.4
-    group: previous
     token: $GITHUB_TOKEN
     overwrite: true
     skip_cleanup: true
