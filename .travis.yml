@@ -11,7 +11,7 @@ matrix:
 
 
 before_script:
-  - gem uninstall uri -v '0.13.0'
+  - gem install uri -v '0.13.1'
 
 script: true
 deploy:
