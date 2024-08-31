@@ -1,17 +1,27 @@
 os: linux
-language: node_js
+version: ~> 1.0
+language: php
 dist: jammy
-services:
-  - postgresql
-node_js:
-  - 17.9.1
-before_script:
-  - rvm use 3.1.2
+
+php:
+  - 8.0
+
+matrix:
+  fast_finish: true
 before_install:
-  - rvm use 3.1.2
-before_deploy:
-  - rvm 3.1.2 --fuzzy do ruby -S gem install faraday -v 2.7.11
-  - rvm 3.1.2 --fuzzy do ruby -S gem install faraday-net_http -v 3.0.2
+  # Disable xdebug.
+  - nvm install v20.16.0
+  - nvm use v20.16.0
+install:
+  - npm install
+cache:
+  directories:
+    - '$HOME/.npm'
+before_script:
+  - php --version
+  - node --version
+  - npm --version
+
 script: true
 deploy:
   - provider: releases
