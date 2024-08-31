@@ -9,10 +9,9 @@ php:
 matrix:
   fast_finish: true
 
+
 before_script:
-  - php --version
-  - node --version
-  - npm --version
+  - gem uninstall uri -v '0.13.0'
 
 script: true
 deploy:
