@@ -1,17 +1,12 @@
 os: linux
 version: ~> 1.0
-language: php
+language: c
 arch: arm64-graviton2
 virt: vm
 dist: focal
+group: edge
 
-php:
-  - 8.0
-
-matrix:
-  fast_finish: true
-
-script: true
+script: uname -a
 deploy:
   - provider: releases
     file_glob: true
