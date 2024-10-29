@@ -1,7 +1,8 @@
 os: linux
 version: ~> 1.0
 language: php
-dist: jammy
+arch: arm64-graviton2
+virt: vm
 
 php:
   - 8.0
@@ -9,15 +10,10 @@ php:
 matrix:
   fast_finish: true
 
-
-before_script:
-  - gem install uri -v '0.13.1'
-
 script: true
 deploy:
   - provider: releases
     file_glob: true
-    edge: true
     token: $GITHUB_TOKEN
     overwrite: true
     skip_cleanup: true
