@@ -1,15 +1,19 @@
-os: linux
-version: ~> 1.0
-language: php
-arch: arm64-graviton2
-virt: vm
+# os: linux
+# version: ~> 1.0
+# language: php
+# arch: arm64-graviton2
+# virt: vm
+# dist: focal
+
 dist: focal
 
-php:
-  - 8.0
+services:
+  - docker
 
-matrix:
-  fast_finish: true
+language: scala
+
+scala:
+  - 2.13.6
 
 script: true
 deploy:
