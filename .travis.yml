@@ -1,11 +1,10 @@
-# os: linux
-# version: ~> 1.0
-# language: php
-# arch: arm64-graviton2
-# virt: vm
-# dist: focal
-
+os: linux
+version: ~> 1.0
+language: php
+arch: arm64-graviton2
+virt: vm
 dist: focal
+group: edge
 
 services:
   - docker
