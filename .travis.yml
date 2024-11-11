@@ -5,7 +5,7 @@
 # virt: vm
 # dist: focal
 
-dist: focal
+dist: jammy
 
 services:
   - docker
@@ -15,9 +15,9 @@ language: scala
 scala:
   - 2.13.6
 
-before_deploy:
-  - rvm use ruby-3.1.2 --default
-  - gem install uri -v '1.0.1'
+# before_deploy:
+#   - rvm use ruby-3.1.2 --default
+#   - gem install uri -v '1.0.1'
    
 script: true
 deploy:
