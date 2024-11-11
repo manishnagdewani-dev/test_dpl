@@ -5,7 +5,7 @@
 # virt: vm
 # dist: focal
 
-dist: jammy
+dist: focal
 
 services:
   - docker
